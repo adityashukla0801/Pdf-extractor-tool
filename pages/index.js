@@ -13,6 +13,7 @@ const Home = () => {
 
   //After upload file this will extract data from pdf and results in an interactive table.
   const handleTextExtraction = async (file) => {
+    setError("");
     setLoading(true);
     setExtractedText(null);
     setLangchainResult(null);
