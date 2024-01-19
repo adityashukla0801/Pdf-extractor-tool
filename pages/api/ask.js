@@ -1,6 +1,6 @@
-// pages/api/analyzeText.js
 import { processTextWithLangchain } from "../../utils/lungchainUtils";
 
+// POST Method for the process text with Langchain OpenAI
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {

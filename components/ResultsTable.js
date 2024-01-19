@@ -8,6 +8,7 @@ const ResultsTable = ({ text, analysis }) => {
       <p className="text-xl m-4">Extracted Text:</p>
       <p className="text-sm m-8">{text}</p>
       <p className="text-xl m-4">Extracted Table:</p>
+
       {/* Display Langchain and OpenAI analysis results */}
       <table className="table-auto m-8 w-full text-left border border-white">
         <thead>

@@ -1,6 +1,7 @@
 import React from "react";
 
-const FileUpload = ({ onUpload }) => {
+const FileUpload = ({ onUpload, loading }) => {
+  //File upload on change of input
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -10,7 +11,9 @@ const FileUpload = ({ onUpload }) => {
 
   return (
     <div>
+      {/* File Input for the upload file */}
       <input
+        disabled={loading}
         accept=".pdf"
         className="block w-full text-sm text-slate-500
       file:mr-4 file:py-2 file:px-4
@@ -21,6 +24,7 @@ const FileUpload = ({ onUpload }) => {
         type="file"
         onChange={handleFileChange}
       />
+      {/* Warning this file input accept only .pdf formate */}
       <label className="text-red-500 p-4">
         * Support for .pdf file format.
       </label>

@@ -3,6 +3,7 @@ import "pdfjs-dist/build/pdf.worker"; // Import the worker file
 
 pdfjs.GlobalWorkerOptions.workerSrc = "path/to/pdf.worker.js";
 
+// Extract text from the pdf file through worker.js
 const extractTextFromPdf = async (file) => {
   const fileReader = new FileReader();
 

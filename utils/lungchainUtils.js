@@ -5,6 +5,7 @@ const model = new ChatOpenAI({
   openAIApiKey: process.env.OPENAI_API_KEY,
 });
 
+//Process text with Langchain OpenAI by passing the valid prompt template
 export async function processTextWithLangchain(text) {
   // Prompt text for openAI
   const promptTemplate = PromptTemplate.fromTemplate(`
