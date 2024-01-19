@@ -11,24 +11,29 @@ export async function processTextWithLangchain(text) {
   const promptTemplate = PromptTemplate.fromTemplate(`
   Extract the following information from the text in this below format:
   key: [value]
-  key should be name, dob, or some required information and value is the information
+  key should be Name, Dob, or Some required information and value is the information.
+
+  iF no value present in the key or value then remove that key.
 
   extract these type of data from {text}
   `);
   const chain = promptTemplate.pipe(model);
 
-  const result = await chain.invoke({ text });
+  try {
+    const result = await chain.invoke({ text });
+    // Split the input string by newline and create an array of key-value pairs
+    const getKeyValue = (inputString) => {
+      const keyValuePairs = inputString.split("\n").map((line) => {
+        const [key, value] = line.split(":").map((item) => item.trim());
+        return { key, value };
+      });
+      return keyValuePairs;
+    };
 
-  // Split the input string by newline and create an array of key-value pairs
-  const getKeyValue = (inputString) => {
-    const keyValuePairs = inputString.split("\n").map((line) => {
-      const [key, value] = line.split(":").map((item) => item.trim());
-      return { key, value };
-    });
-    return keyValuePairs;
-  };
+    const formatedData = getKeyValue(result.lc_kwargs.content);
 
-  const formatedData = getKeyValue(result.lc_kwargs.content);
-
-  return formatedData;
+    return formatedData;
+  } catch (error) {
+    throw error;
+  }
 }

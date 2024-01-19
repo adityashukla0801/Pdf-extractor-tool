@@ -42,8 +42,10 @@ const Home = () => {
       } catch (error) {
         setLoading(false);
         // Set the error if API becomes fail
-        setError(error);
-        console.error("Error analyzing text with Langchain:", error);
+        setError(
+          "There is some error while process the data through langchain openAI API, please try after sometime"
+        );
+        console.error("Error analyzing text with Langchain:", error.message);
       }
     };
     // call the Langchain OpenAI for text analysis.
@@ -71,7 +73,12 @@ const Home = () => {
       )}
 
       {/* IF error comes then it show the error */}
-      {error && <label className="text-red-500 p-4">{error}</label>}
+      {error && (
+        <div className="flex justify-center">
+          {" "}
+          <label className="text-red-500 p-4 mt-5 text-3xl">{error}</label>
+        </div>
+      )}
     </div>
   );
 };
